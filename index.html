@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script >// quiz.js
+
+      // Quiz questions data
+      const quizQuestions = [
+        {
+          question: "Which is taller: the Empire State Building or the Golden Gate Bridge?",
+          options: ["Empire State Building", "Golden Gate Bridge"],
+          correctAnswer: 1
+        },
+        {
+          question: " In which city would you be if you were viewing the reclining Buddha at Wat Pho?",
+          options: ['Yangon','Singapore','Bangkok','Chiang Mai'],
+          correctAnswer: 3
+        },
+        {
+          question: "Forbidden City is located in the heart of which city",
+          options: ["Sanghai", "Tokyo", "Hong Kong", "Beijing"],
+          correctAnswer: 4
+        },
+        // Add more questions as needed
+      ];
+      
+      // Function to load quiz questions
+      function loadQuizQuestions() {
+        const quizContainer = document.getElementById('quiz-questions');
+        quizContainer.innerHTML = ''; // Clear any existing content
+      
+        quizQuestions.forEach((q, index) => {
+          // Create a Bootstrap card for each question
+          const cardDiv = document.createElement('div');
+          cardDiv.className = 'card mb-4';
+          cardDiv.style.width = '100%';
+      
+          const cardBodyDiv = document.createElement('div');
+          cardBodyDiv.className = 'card-body';
+      
+          const questionHeading = document.createElement('h5');
+          questionHeading.className = 'card-title';
+          questionHeading.textContent = `Q${index + 1}: ${q.question}`;
+          cardBodyDiv.appendChild(questionHeading);
+      
+          const listGroup = document.createElement('ul');
+          listGroup.className = 'list-group list-group-flush';
+      
+          q.options.forEach((option, i) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item';
+      
+            const optionInput = document.createElement('input');
+            optionInput.type = 'radio';
+            optionInput.className = 'form-check-input me-2';
+            optionInput.name = `question${index}`;
+            optionInput.id = `question${index}option${i}`;
+            optionInput.value = i;
+      
+            const optionLabel = document.createElement('label');
+            optionLabel.className = 'form-check-label';
+            optionLabel.htmlFor = `question${index}option${i}`;
+            optionLabel.textContent = option;
+      
+            listItem.appendChild(optionInput);
+            listItem.appendChild(optionLabel);
+      
+            listGroup.appendChild(listItem);
+          });
+      
+          cardDiv.appendChild(cardBodyDiv);
+          cardDiv.appendChild(listGroup);
+          quizContainer.appendChild(cardDiv);
+        });
+      }
+      
+      // Load quiz questions on page load
+      document.addEventListener('DOMContentLoaded', loadQuizQuestions);
+      </script>
+      <nav class="navbar navbar-expand bg-body-tertiary"  data-bs-theme="dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Quiz</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Feedback</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div id="Home">
+        <div id="carouselExampleCaptions" class="carousel slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="/quiz_intro.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Ready for Quiz !!!</h5>
+                <p>Get Set Go</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/travel-triviajpg.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Topic : Travel-related</h5>
+                <p>Show how much you have travelled</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/last.png" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Win or lose or draw</h5>
+                <p>Waiting for the result</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <br>
+      <br>
+
+      <div id="About">
+        <h2>About Section</h2>
+        <h3>Trivia Quiz</h3>
+        <p>Welcome to our trivia quiz! Test your knowledge on a variety of topics and see how well you can do. 
+           It's a fun and engaging way to learn new facts and challenge yourself. 
+           To participate, simply click on the quiz link in the navigation bar, answer the questions, and submit your answers. 
+           You'll receive your score instantly and can try again to improve. Good luck and have fun!
+          Try out Travel quiz right away</p>
+        </div>
+      <div id="Quiz">
+         <h1>Travel quiz</h1>
+        <div id="quiz-questions" class="mt-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Featured
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">An item</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div id="Feedback">
+        
+      </div>
+      <div id="Contact">
+        
+      </div>
+  
+  </body>
+</html>
